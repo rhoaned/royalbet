@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "RoyalBet",
+    "slug": "royalbet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#131314"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.royalbet.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#131314"
+      },
+      "package": "com.royalbet.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-asset"
+    ]
+  }
+}

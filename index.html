@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoyalBet — Onboarding</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ─── CSS Variables (Design Tokens) ─── */
+    :root {
+      /* Palette – Primary */
+      --primary: #fff6df;
+      --primary-container: #ffd700;
+      --primary-fixed: #ffe16d;
+      --primary-fixed-dim: #e9c400;
+      --on-primary: #3a3000;
+      --on-primary-container: #705e00;
+      --on-primary-fixed: #221b00;
+      --on-primary-fixed-variant: #544600;
+      --inverse-primary: #705d00;
+
+      /* Palette – Secondary */
+      --secondary: #ffb5a0;
+      --secondary-container: #ff5625;
+      --secondary-fixed: #ffdbd1;
+      --secondary-fixed-dim: #ffb5a0;
+      --on-secondary: #601400;
+      --on-secondary-container: #541100;
+      --on-secondary-fixed: #3b0900;
+      --on-secondary-fixed-variant: #872000;
+
+      /* Palette – Tertiary */
+      --tertiary: #defcff;
+      --tertiary-container: #00f1ff;
+      --tertiary-fixed: #79f5ff;
+      --tertiary-fixed-dim: #00dbe8;
+      --on-tertiary: #00363a;
+      --on-tertiary-container: #006a70;
+      --on-tertiary-fixed: #002022;
+      --on-tertiary-fixed-variant: #004f54;
+
+      /* Palette – Error */
+      --error: #ffb4ab;
+      --error-container: #93000a;
+      --on-error: #690005;
+      --on-error-container: #ffdad6;
+
+      /* Palette – Surface */
+      --surface: #131314;
+      --surface-dim: #131314;
+      --surface-bright: #3a393a;
+      --surface-variant: #353436;
+      --surface-tint: #e9c400;
+      --surface-container-lowest: #0e0e0f;
+      --surface-container-low: #1c1b1c;
+      --surface-container: #201f20;
+      --surface-container-high: #2a2a2b;
+      --surface-container-highest: #353436;
+
+      /* Palette – Foreground */
+      --on-surface: #e5e2e3;
+      --on-surface-variant: #d0c6ab;
+      --on-background: #e5e2e3;
+      --background: #131314;
+
+      /* Palette – Outline */
+      --outline: #999077;
+      --outline-variant: #4d4732;
+
+      /* Palette – Inverse */
+      --inverse-surface: #e5e2e3;
+      --inverse-on-surface: #313031;
+
+      /* Typography */
+      --font-headline: "Space Grotesk", sans-serif;
+      --font-body: "Manrope", sans-serif;
+      --font-label: "Manrope", sans-serif;
+
+      /* Border Radii */
+      --radius-default: 0.125rem;
+      --radius-lg: 0.25rem;
+      --radius-xl: 0.5rem;
+      --radius-full: 0.75rem;
+
+      /* Gradients */
+      --gold-gradient: linear-gradient(135deg, var(--primary-fixed-dim) 0%, var(--primary-container) 100%);
+
+      /* Glass Effect */
+      --glass-bg: rgba(28, 27, 28, 0.7);
+      --glass-blur: blur(24px);
+
+      /* Shadows */
+      --shadow-cta: 0 10px 30px rgba(255, 215, 0, 0.3);
+      --shadow-ambient: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
+
+      /* Glow Radii */
+      --glow-size: 40%;
+      --glow-blur: 120px;
+    }
+
+    /* ─── Reset & Base ─── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: max(884px, 100dvh);
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--primary-container);
+      color: var(--on-primary);
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    }
+
+    /* ─── Layout ─── */
+    .onboarding {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+
+    /* ─── Progress Bar ─── */
+    .progress-section {
+      width: 100%;
+      max-width: 48rem;
+      margin-bottom: 3rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .progress-phase {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      color: var(--secondary-container);
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .progress-percent {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      font-size: 0.75rem;
+    }
+
+    .progress-track {
+      height: 0.25rem;
+      width: 100%;
+      background: var(--surface-container-highest);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 75%;
+      background: var(--secondary-container);
+      transition: width 1s ease;
+    }
+
+    /* ─── Two-Column Layout ─── */
+    .content-row {
+      width: 100%;
+      max-width: 64rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    /* ─── Headline Column ─── */
+    .headline-col {
+      width: 100%;
+    }
+
+    .headline-col h1 {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: clamp(2.75rem, 6vw, 4.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: var(--on-surface);
+      margin-bottom: 2rem;
+    }
+
+    .headline-col h1 .accent {
+      color: var(--primary-container);
+      font-style: italic;
+    }
+
+    .headline-description {
+      color: var(--on-surface-variant);
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      max-width: 28rem;
+      border-left: 2px solid var(--primary-container);
+      padding-left: 1.5rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* ─── Configuration Form Column ─── */
+    .config-col {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* ─── Section Headers ─── */
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+    }
+
+    .section-header .hint {
+      font-size: 0.625rem;
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ─── Sports Grid ─── */
+    .sports-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .sport-card {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: var(--radius-default);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.25rem;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .sport-card--selected {
+      background: var(--primary-container);
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+
+    .sport-card--unselected {
+      background: var(--surface-container);
+    }
+
+    .sport-card--unselected:hover {
+      background: var(--surface-container-highest);
+    }
+
+    .sport-card__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+
+    .sport-card--selected .sport-card__img {
+      mix-blend-mode: multiply;
+      opacity: 0.6;
+      filter: grayscale(1);
+      transform: scale(1.05);
+    }
+
+    .sport-card--selected:hover .sport-card__img {
+      filter: grayscale(0);
+      transform: scale(1);
+    }
+
+    .sport-card--unselected .sport-card__img {
+      opacity: 0.2;
+      filter: grayscale(1);
+    }
+
+    .sport-card--unselected:hover .sport-card__img {
+      opacity: 0.4;
+    }
+
+    .sport-card__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .sport-card__icon {
+      margin-bottom: 0.5rem;
+    }
+
+    .sport-card--selected .sport-card__icon {
+      color: var(--on-primary);
+      font-variation-settings: "FILL" 1;
+    }
+
+    .sport-card--unselected .sport-card__icon {
+      color: var(--on-surface-variant);
+      transition: color 0.3s ease;
+    }
+
+    .sport-card--unselected:hover .sport-card__icon {
+      color: var(--primary);
+    }
+
+    .sport-card__name {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: 1.5rem;
+      font-style: italic;
+      line-height: 1;
+    }
+
+    .sport-card--selected .sport-card__name {
+      color: var(--on-primary);
+    }
+
+    .sport-card--unselected .sport-card__name {
+      color: var(--on-surface-variant);
+      transition: color 0.3s ease;
+    }
+
+    .sport-card--unselected:hover .sport-card__name {
+      color: var(--on-surface);
+    }
+
+    .sport-card__check {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--on-primary);
+      color: var(--primary-container);
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sport-card__check .material-symbols-outlined {
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    /* ─── Tactical Preference (Radio Options) ─── */
+    .tactical-section h2 {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .tactical-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .tactical-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem;
+      background: var(--surface-container);
+      border-left: 4px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tactical-option:hover {
+      background: var(--surface-container-highest);
+      border-left-color: var(--secondary-container);
+    }
+
+    .tactical-option--active {
+      border-left-color: var(--primary-container);
+    }
+
+    .tactical-option__left {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .tactical-option__icon-wrap {
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-xl);
+    }
+
+    .tactical-option__icon-wrap--default {
+      background: var(--surface-container-low);
+    }
+
+    .tactical-option__icon-wrap--default .material-symbols-outlined {
+      color: var(--secondary-container);
+      font-variation-settings: "FILL" 1;
+    }
+
+    .tactical-option__icon-wrap--active {
+      background: rgba(255, 215, 0, 0.1);
+    }
+
+    .tactical-option__icon-wrap--active .material-symbols-outlined {
+      color: var(--primary-container);
+      font-variation-settings: "FILL" 1;
+    }
+
+    .tactical-option__title {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--on-surface);
+      transition: color 0.3s ease;
+    }
+
+    .tactical-option:hover .tactical-option__title {
+      color: var(--primary);
+    }
+
+    .tactical-option--active .tactical-option__title {
+      color: var(--primary);
+    }
+
+    .tactical-option__desc {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin-top: 0.125rem;
+    }
+
+    /* Radio Indicator */
+    .radio-indicator {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      border: 2px solid var(--outline);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.3s ease;
+    }
+
+    .tactical-option:hover .radio-indicator {
+      border-color: var(--secondary-container);
+    }
+
+    .radio-indicator__dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: var(--secondary-container);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .tactical-option:hover .radio-indicator__dot {
+      opacity: 1;
+    }
+
+    .radio-indicator--active {
+      border-color: var(--primary-container);
+    }
+
+    .tactical-option:hover .radio-indicator--active {
+      border-color: var(--primary-container);
+    }
+
+    .radio-indicator--active .radio-indicator__dot {
+      background: var(--primary-container);
+      opacity: 1;
+    }
+
+    /* ─── CTA Section ─── */
+    .cta-section {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(77, 71, 50, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 1.25rem 3rem;
+      background: var(--gold-gradient);
+      color: var(--on-primary);
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius-default);
+      cursor: pointer;
+      box-shadow: var(--shadow-cta);
+      transition: transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.02);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 1.25rem 3rem;
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 2px solid var(--outline-variant);
+      border-radius: var(--radius-default);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-container-highest);
+    }
+
+    /* ─── Visual Accent Glows ─── */
+    .glow {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(var(--glow-blur));
+    }
+
+    .glow--top-left {
+      top: -10%;
+      left: -10%;
+      width: var(--glow-size);
+      height: var(--glow-size);
+      background: rgba(255, 215, 0, 0.05);
+    }
+
+    .glow--bottom-right {
+      bottom: -10%;
+      right: -10%;
+      width: var(--glow-size);
+      height: var(--glow-size);
+      background: rgba(255, 86, 37, 0.05);
+    }
+
+    /* ─── Responsive: Desktop two-column ─── */
+    @media (min-width: 1024px) {
+      .onboarding {
+        padding: 3rem;
+      }
+
+      .progress-section {
+        max-width: 48rem;
+      }
+
+      .content-row {
+        flex-direction: row;
+        gap: 3rem;
+      }
+
+      .headline-col {
+        width: 40%;
+        position: sticky;
+        top: 3rem;
+      }
+
+      .config-col {
+        width: 60%;
+      }
+
+      .sport-card {
+        aspect-ratio: 16 / 9;
+      }
+
+      .cta-section {
+        flex-direction: row;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: auto;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .sport-card {
+        aspect-ratio: 16 / 9;
+      }
+
+      .cta-section {
+        flex-direction: row;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="onboarding">
+
+    <!-- Progress Bar -->
+    <div class="progress-section">
+      <div class="progress-header">
+        <span class="progress-phase">Configuration Phase 01</span>
+        <span class="progress-percent">75% COMPLETE</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+
+    <section class="content-row">
+
+      <!-- Headline Column -->
+      <div class="headline-col">
+        <h1>
+          TAILOR YOUR<br />
+          <span class="accent">PRECISION</span><br />
+          EXPERIENCE
+        </h1>
+        <p class="headline-description">
+          Define your theater of operations. Select the arenas and tactical styles that fuel your high-stakes strategy.
+        </p>
+      </div>
+
+      <!-- Configuration Form -->
+      <div class="config-col">
+
+        <!-- Sports Selection -->
+        <div>
+          <div class="section-header">
+            <h2>Select Arenas</h2>
+            <span class="hint">Pick at least two</span>
+          </div>
+
+          <div class="sports-grid">
+
+            <!-- NFL (selected) -->
+            <div class="sport-card sport-card--selected">
+              <img
+                class="sport-card__img"
+                alt="Close up of an American football on turf"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCseEGXEJyBbAT7clwGEcgf7w9U6V2dqyCzFmsJleNNM8b9mvML7EasFsMvzQ74zpIIaaYRD4L143d9zR9PsDc2OrYkMbU9zsvj9BvSfcw7zSnN-lOBulgcVWP2puWQjELDTpZ3axoMB70s8zRdHhDsfVDoH1SE-kWbk-u5-BIRnwhB4Wszedkru84RXr6UXBteoA-rc2iuAGEpVg0TbFU7sprgc3-h5YdjYQI0Lufax3sleCWhLpUehhjiey78JjZcPZ5vNgZVeE1d"
+              />
+              <div class="sport-card__content">
+                <span class="material-symbols-outlined sport-card__icon" style="font-variation-settings: 'FILL' 1">sports_football</span>
+                <p class="sport-card__name">NFL</p>
+              </div>
+              <div class="sport-card__check">
+                <span class="material-symbols-outlined">check</span>
+              </div>
+            </div>
+
+            <!-- NBA (unselected) -->
+            <div class="sport-card sport-card--unselected">
+              <img
+                class="sport-card__img"
+                alt="Basketball player dunking in a dark arena"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgclUtfFLtw4wVlGVze9n4Dq-Y_v2EuM27Z-VSV8Ofzoli8MCF4UnvY4dUXLdLiP_A82wSiHlZ6OKXzNBt4hv3RUdyoYEeOhHw05sYG5HAK3a_g11Jbf7XRNirMf95Yn58LlPDC1NpIV4pdADPZY2ObxZpanjb3811qca2wKjUFf4TpGcLZXXKADNC7pOlBub1uS4gDXbD1o6fgGWV03KJ4pBEeQsAMD1-3gwmJ0BY30YzuawDcuLvuwBD0htJ-J6STMFA15ixMMQK"
+              />
+              <div class="sport-card__content">
+                <span class="material-symbols-outlined sport-card__icon">sports_basketball</span>
+                <p class="sport-card__name">NBA</p>
+              </div>
+            </div>
+
+            <!-- MLB (unselected) -->
+            <div class="sport-card sport-card--unselected">
+              <img
+                class="sport-card__img"
+                alt="Baseball diamond field at night under lights"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCleqyFkfdyW6OuP-rWB2Sq5nZYFf93YLEr6lJ4B611oxvTkoHWBEv8anJljbRRVG93unC6gjaEd9nnGQgGuPDZh38d1c6VckXtjfpSAmZi7BHvXLUedTz6g2JvWJQMC14slvMXUNe6gL46wdj_gtX7w1CK6Ytnc-vaoqS8MPo800rJgibxW6nwB1Vc-zi07NUl7nWqtqj6R9ajDor3W0kFzZyY0qud_e9EmtjkqqSdGU31MVWRy2Phf9QG_DWVKVOFAytCgbvJZGj"
+              />
+              <div class="sport-card__content">
+                <span class="material-symbols-outlined sport-card__icon">sports_baseball</span>
+                <p class="sport-card__name">MLB</p>
+              </div>
+            </div>
+
+            <!-- Soccer (selected) -->
+            <div class="sport-card sport-card--selected">
+              <img
+                class="sport-card__img"
+                alt="Soccer ball in the back of a net"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKO75jZtdSGP1vjegoTv2RCfuxfDWcSxsiuLNaQfW7gMWdTOBvn_su8I16fl7n8g4uDM98S80N0gFSIHGBCt6CVCj6SsSUWdnIZRAq_WirSgbfRg2TdKYORwP3GGHQXuIP0WElAozl8c2lnmNGMl3xD4thDguluDDYdspnLOeb79jGY6X2ZymKQ9yo-Czey5V44D4rTU2auOTsbwNmbFEHJBfArO1hnZDDcgbgLbWL3lEZkuyFcKJgSeJFWO3wiZ8bSQ8SnDkFmFaI"
+              />
+              <div class="sport-card__content">
+                <span class="material-symbols-outlined sport-card__icon" style="font-variation-settings: 'FILL' 1">sports_soccer</span>
+                <p class="sport-card__name">SOCCER</p>
+              </div>
+              <div class="sport-card__check">
+                <span class="material-symbols-outlined">check</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tactical Preference -->
+        <div class="tactical-section">
+          <h2>Tactical Preference</h2>
+
+          <div class="tactical-options">
+
+            <!-- Sharp Analytics (unselected) -->
+            <div class="tactical-option">
+              <div class="tactical-option__left">
+                <div class="tactical-option__icon-wrap tactical-option__icon-wrap--default">
+                  <span class="material-symbols-outlined">bolt</span>
+                </div>
+                <div>
+                  <h3 class="tactical-option__title">SHARP ANALYTICS</h3>
+                  <p class="tactical-option__desc">Focus on high-limit markets and statistical discrepancies.</p>
+                </div>
+              </div>
+              <div class="radio-indicator">
+                <div class="radio-indicator__dot"></div>
+              </div>
+            </div>
+
+            <!-- Live Speculator (active/selected) -->
+            <div class="tactical-option tactical-option--active">
+              <div class="tactical-option__left">
+                <div class="tactical-option__icon-wrap tactical-option__icon-wrap--active">
+                  <span class="material-symbols-outlined">sensors</span>
+                </div>
+                <div>
+                  <h3 class="tactical-option__title">LIVE SPECULATOR</h3>
+                  <p class="tactical-option__desc">Prioritize in-play momentum shifts and rapid-fire execution.</p>
+                </div>
+              </div>
+              <div class="radio-indicator radio-indicator--active">
+                <div class="radio-indicator__dot"></div>
+              </div>
+            </div>
+
+            <!-- Parlay Architect (unselected) -->
+            <div class="tactical-option">
+              <div class="tactical-option__left">
+                <div class="tactical-option__icon-wrap tactical-option__icon-wrap--default">
+                  <span class="material-symbols-outlined">account_balance</span>
+                </div>
+                <div>
+                  <h3 class="tactical-option__title">PARLAY ARCHITECT</h3>
+                  <p class="tactical-option__desc">Build complex narratives across multiple disciplines for exponential yield.</p>
+                </div>
+              </div>
+              <div class="radio-indicator">
+                <div class="radio-indicator__dot"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="cta-section">
+          <button class="btn-primary">START BETTING</button>
+          <button class="btn-secondary">CONFIGURE LATER</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Ambient Glow Accents -->
+  <div class="glow glow--top-left"></div>
+  <div class="glow glow--bottom-right"></div>
+
+</body>
+</html>
